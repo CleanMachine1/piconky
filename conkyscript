@@ -1,0 +1,66 @@
+conky.config = {
+
+background = true,
+use_xft = true,
+font = '123:size=12',
+xftalpha = 0.1,
+update_interval = 0.5,
+total_run_times = 0,
+own_window = true,
+own_window_type = 'normal',
+own_window_transparent = true,
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+double_buffer = true,
+minimum_width = 250,
+minimum_height = 5,
+maximum_width = 400,
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+draw_graph_borders = false,
+default_color = 'gray',
+default_shade_color = 'red',
+default_outline_color = 'green',
+alignment = 'top_right',
+gap_x = 10,
+gap_y = 10,
+no_buffers = true,
+uppercase = false,
+cpu_avg_samples = 2,
+net_avg_samples = 1,
+override_utf8_locale = false,
+use_spacer = 'right'
+
+}
+
+conky.text = [[
+
+${font Arial:size=20}${color #0040FF}RPI${color #00FFFF}LINUX
+
+${voffset -90}
+${color #0064CF}
+${font}
+${font Arial:bold:size=10}${color #00AAFF}SYSTEM ${color #0000AA} ${hr 2}
+$font${color #0064CF}$sysname $kernel $alignr $machine
+Frequency: ${color #0064CF}$alignr${freq_g cpu0}Ghz${color #0064CF}
+Uptime: ${color #0064CF}$alignr${uptime}${color #0064CF}
+File System: $alignr${fs_type}
+
+${font Arial:bold:size=10}${color #00AAFF}CPU ${color #0000AA}${hr 2}
+$font${color #0064CF}Temp: $alignr ${color #0064CF}${exec /opt/vc/bin/vcgencmd measure_temp | cut -c6-9} C
+$font${color #0064CF}CPU1:  ${color #0064CF}${cpu cpu1}%${color #0064CF} ${cpubar cpu1}
+CPU2:  ${color #0064CF}${cpu cpu2}%${color #0064CF} ${cpubar cpu2}
+CPU3:  ${color #0064CF}${cpu cpu3}%${color #0064CF} ${cpubar cpu3}
+CPU4:  ${color #0064CF}${cpu cpu4}%${color #0064CF} ${cpubar cpu4}
+${cpugraph #0064CF #0000AA} $color
+
+${font Arial:bold:size=10}${color #00AAFF}MEMORY ${color #0000AA}${hr 2}
+$font${color #0064CF}RAM: $alignc ${color #0064CF}$mem${color #0064CF} / $memmax $alignr $memperc%
+$membar
+
+
+${font Arial:bold:size=10}${color #00AAFF}HDD ${color #0000AA}${hr 2}
+$font${color #0064CF}Storage: $alignc ${color #0064CF}${fs_used /} / ${fs_size /home}${color #0064CF} $alignr 
+
+
+]]
