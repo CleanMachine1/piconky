@@ -17,16 +17,21 @@ Open a terminal and type:
 
 
 You may want to consider having conky start at startup.
-To do this we are going to use a systemd file 
+To do this we are going to use cron
 Open a terminal and type:
-`wget -O ~/Downloads/conky.service https://raw.githubusercontent.com/CleanMachine1/piconky/main/conky.service && 
- sudo mv ~/Downloads/conky.service /etc/systemd/system/conky.service && sudo systemctl enable conky.service`
- 
+`crontab -e`
+
+Now, whilst inside of the crontab config enter this line at the bottom 
+`@reboot sleep 30 && conky`
+
+Then upon next reboot, 30 seconds should pass then conky should appear 
+NOTE: Please leave the sleep to 30 otherwise it may not appear as crontab launches before desktop meaning it may never show if set to anything lower
 
 ## Process to Uninstall: 
 Open terminal and type:
-(If you did the optional step, please first type `sudo systemctl disable conky.service && sudo rm /etc/systemd/system/conky.service`
+`sudo apt purge conky && rm ~/.conkyrc`
 
-Else just:
-
-`sudo apt purge conky && rm ~/.conkyrc` 
+If you did the additional step about autostarting it then run these commands:
+`crontab -e` 
+and then remove the following line 
+`@reboot sleep 30 && conky`
